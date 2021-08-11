@@ -1,5 +1,5 @@
-import 'package:shopping/screens/brandes/brands_navigator.dart';
 import 'package:shopping/config/const/theme_data.dart';
+import 'package:shopping/screens/brandes/brands_navigator.dart';
 import 'package:shopping/providers/cart_provider.dart';
 import 'package:shopping/providers/favorite_provider.dart';
 import 'package:shopping/providers/products_provider.dart';
