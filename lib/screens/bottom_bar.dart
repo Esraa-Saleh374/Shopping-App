@@ -1,6 +1,6 @@
 import 'package:shopping/screens/homepage.dart';
-import 'package:shopping/screens/search.dart';
 import 'package:shopping/screens/user_info.dart';
+import 'package:shopping/screens/search.dart';
 import 'package:flutter/material.dart';
 import 'cart.dart';
 import 'feeds.dart';
