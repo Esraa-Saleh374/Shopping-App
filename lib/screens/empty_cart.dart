@@ -48,9 +48,9 @@ class CartEmpty extends StatelessWidget {
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: Colors.red),
+                  side: BorderSide(color: Colors.yellow),
                 ),
-                color: Colors.redAccent,
+                color: Colors.yellow,
                 child: Text(
                   'تسوق الان '.toUpperCase(),
                   textAlign: TextAlign.center,

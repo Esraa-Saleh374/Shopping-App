@@ -53,27 +53,9 @@ class CartScreen extends StatelessWidget {
     }
 
     return cartProvider.getCartItem.isEmpty
-        ? Scaffold(
-            appBar: AppBar(
-              backgroundColor: Color.fromARGB(255, 120, 66, 150),
-            ),
-            body: CartEmpty())
+        ? Scaffold(body: CartEmpty())
         : Scaffold(
             bottomSheet: checkoutSection(context),
-            // appBar: AppBar(
-            //   title: Text('Cart (${cartProvider.getCartItem.length})'),
-            //   backgroundColor: Color.fromARGB(255, 120, 66, 150),
-            //   actions: [
-            //     IconButton(
-            //       onPressed: () {
-            //         _showDialog("Clear Cart!", "Products will be cleard  ", () {
-            //           cartProvider.clearCart();
-            //         });
-            //       },
-            //       icon: Icon(Icons.delete),
-            //     )
-            //   ],
-            // ),
             body: ShowappBar(
               hight: 200,
               child: Padding(
