@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shopping/screens/favorit.dart';
+import 'package:shopping/widgets/category.dart';
 import 'package:shopping/widgets/category/appbar.dart';
 import 'package:shopping/models/product_list.dart';
 import 'package:shopping/providers/products_provider.dart';
+import 'package:shopping/widgets/drawer_screen.dart';
 import 'package:shopping/widgets/feed_product.dart';
 import 'package:provider/provider.dart';
 
@@ -23,125 +26,198 @@ class _SearchState extends State<Search> {
 
   List<Product> _searchList = [];
 
+  Widget iconAppBar(IconData icon, Function tap) {
+    return InkWell(
+      onTap: () => tap(),
+      child: Icon(
+        icon,
+        color: Colors.yellow,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final serviceData = Provider.of<Products>(context);
     final productsList = serviceData.products;
 
     return Scaffold(
-        body: ShowappBar(
-      hight: 300,
-      child: Column(
-        children: [
-          Stack(
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: Color.fromARGB(255, 120, 66, 150),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 120),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                      ),
-                    ],
-                  ),
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    controller: _searchTextController,
-                    minLines: 1,
-                    focusNode: _node,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
+              iconAppBar(
+                Icons.notifications_outlined,
+                () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Fevorit()));
+                },
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              iconAppBar(
+                Icons.favorite_outline,
+                () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Fevorit()));
+                },
+              )
+            ],
+          ),
+        ),
+        endDrawer: Container(
+          child: DrawerScreen(),
+          color: Colors.white,
+        ),
+        body: ShowappBar(
+          hight: 80,
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            spreadRadius: 1,
+                            blurRadius: 3,
+                          ),
+                        ],
                       ),
-                      prefixIcon: Icon(
-                        Icons.search,
-                      ),
-                      hintText: 'Search',
-                      filled: true,
-                      fillColor: Theme.of(context).cardColor,
-                      suffixIcon: IconButton(
-                        onPressed: _searchTextController!.text.isEmpty
-                            ? null
-                            : () {
-                                _searchTextController!.clear();
-                                _node.unfocus();
-                              },
-                        icon: Icon(Icons.clear,
-                            color: _searchTextController!.text.isNotEmpty
-                                ? Colors.red
-                                : Colors.grey),
+                      margin: EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        controller: _searchTextController,
+                        minLines: 1,
+                        focusNode: _node,
+                        textDirection: TextDirection.rtl,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          prefixIcon: Container(
+                            height: 67,
+                            width: 67,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 120, 66, 150),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Icon(
+                              Icons.notes_outlined,
+                              color: Colors.yellow,
+                              size: 40,
+                            ),
+                          ),
+                          hintTextDirection: TextDirection.rtl,
+                          hintText: '...اكتب كلمه البحث ',
+                          filled: true,
+                          fillColor: Theme.of(context).cardColor,
+                          suffixIcon: Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                            size: 40,
+                          ),
+                        ),
+                        onChanged: (value) {
+                          _searchTextController!.text.toLowerCase();
+                          setState(() {
+                            _searchList = serviceData.searchQuery(value);
+                          });
+                        },
                       ),
                     ),
-                    onChanged: (value) {
-                      _searchTextController!.text.toLowerCase();
-                      setState(() {
-                        _searchList = serviceData.searchQuery(value);
-                      });
-                    },
                   ),
-                ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 100,
+                    //  color: Colors.white,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
+                      itemCount: 6,
+                      itemBuilder: (context, index) => Row(
+                        textDirection: TextDirection.rtl,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Card(
+                              color: Color.fromARGB(255, 120, 66, 150),
+                              child: Catogry(
+                                index: index,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          child: Text(
+                            "نتائج البحث ",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            textDirection: TextDirection.rtl,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          color: Color.fromARGB(255, 120, 66, 150),
+                          width: 3,
+                          height: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                  _searchTextController!.text.isNotEmpty && _searchList.isEmpty
+                      ? Center(
+                          child: Text(
+                            'عذرا ! هذا المنتج غير موجود ',
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        )
+                      : Text("resrlt of search")
+                ],
               ),
             ],
           ),
-          _searchTextController!.text.isNotEmpty && _searchList.isEmpty
-              ? Column(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Icon(
-                      Icons.search,
-                      size: 60,
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'No results found',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                )
-              : Expanded(
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      GridView.count(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        crossAxisCount: 2,
-                        childAspectRatio: 240 / 420,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                        children: List.generate(
-                            _searchTextController!.text.isEmpty
-                                ? productsList.length
-                                : _searchList.length, (index) {
-                          return ChangeNotifierProvider.value(
-                            value: _searchTextController!.text.isEmpty
-                                ? productsList[index]
-                                : _searchList[index],
-                            child: FeedsProduct(),
-                          );
-                        }),
-                      ),
-                    ],
-                  ),
-                ),
-        ],
-      ),
-    ));
+        ));
   }
 }

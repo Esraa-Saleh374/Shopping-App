@@ -74,7 +74,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                   label: ('حساب'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.category),
+                  icon: Icon(Icons.grid_view),
                   label: ('الاقسام'),
                 ),
                 BottomNavigationBarItem(
