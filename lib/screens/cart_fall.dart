@@ -18,7 +18,11 @@ class _CartFullState extends State<CartFull> {
     return Text(
       " $value دينار",
       textDirection: TextDirection.rtl,
-      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+      style: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
     );
   }
 
@@ -80,11 +84,18 @@ class _CartFullState extends State<CartFull> {
       onTap: () => Navigator.pushNamed(context, FeedsProductDetails.routeName,
           arguments: widget.productId),
       child: Container(
-        height: 155,
+        height: 130,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).backgroundColor,
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 0,
+              offset: Offset(1.5, 1.5), // changes position of shadow
+            ),
+          ],
         ),
         child: Row(
           children: [
@@ -125,7 +136,9 @@ class _CartFullState extends State<CartFull> {
                             cartAttr.title,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                fontWeight: FontWeight.w800, fontSize: 18),
+                                color: Colors.black,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 18),
                           ),
                         ),
                       ],
@@ -136,7 +149,7 @@ class _CartFullState extends State<CartFull> {
                         Flexible(
                           flex: 1,
                           child: Container(
-                            height: 40,
+                            height: 33,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
@@ -186,6 +199,9 @@ class _CartFullState extends State<CartFull> {
                                       child: Text(
                                         cartAttr.quantity.toString(),
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -217,29 +233,34 @@ class _CartFullState extends State<CartFull> {
                           ),
                         ),
                         SizedBox(
-                          width: 6,
+                          width: 20,
                         ),
                         Flexible(
                           flex: 1,
-                          child: showproducDetail(
-                              '  ${subTotal.toStringAsFixed(2)}  '),
+                          child: Column(
+                            children: [
+                              showproducDetail(
+                                  '  ${subTotal.toStringAsFixed(2)}  '),
+                              Text(
+                                '%${cartAttr.offer.toString()}خصم',
+                                style: TextStyle(color: Colors.green[700]),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
-                    ),
-                    Text(
-                      '%${cartAttr.offer.toString()}خصم',
                     ),
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(right: 8),
               child: Container(
                 width: 100,
-                height: 100,
+                height: 120,
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: Colors.grey[350],
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(

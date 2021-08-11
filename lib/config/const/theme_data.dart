@@ -8,7 +8,7 @@ class Styles {
       primarySwatch: Colors.purple,
       primaryColor: isDarkTheme ? Colors.black : Colors.grey.shade300,
       accentColor: Colors.deepPurple,
-      backgroundColor: isDarkTheme ? Colors.grey.shade700 : Colors.white24,
+      backgroundColor: isDarkTheme ? Colors.white24 : Colors.white24,
       indicatorColor: isDarkTheme ? Color(0xff0E1D36) : Color(0xffCBDCF8),
       buttonColor: isDarkTheme ? Color(0xff3B3B3B) : Color(0xffF1F5FB),
       hintColor: isDarkTheme ? Colors.grey.shade300 : Colors.grey.shade800,
