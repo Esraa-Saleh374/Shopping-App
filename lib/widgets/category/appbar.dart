@@ -12,7 +12,7 @@ class ShowappBar extends StatelessWidget {
           child: RotationTransition(
             turns: AlwaysStoppedAnimation(.5),
             child: Image.asset(
-              'assets/wave.png',
+              'assets/images/wave.png',
               height: hight.toDouble(),
               fit: BoxFit.cover,
               width: double.infinity,
