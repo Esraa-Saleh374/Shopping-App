@@ -1,12 +1,25 @@
+import 'package:shopping/screens/favorit.dart';
 import 'package:shopping/widgets/category/appbar.dart';
 import 'package:shopping/providers/cart_provider.dart';
 import 'package:shopping/screens/cart_fall.dart';
 import 'package:shopping/screens/empty_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping/widgets/drawer_screen.dart';
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/CartScreen';
+
+  Widget iconAppBar(IconData icon, Function tap) {
+    return InkWell(
+      onTap: () => tap(),
+      child: Icon(
+        icon,
+        color: Colors.yellow,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
@@ -56,10 +69,37 @@ class CartScreen extends StatelessWidget {
         ? Scaffold(body: CartEmpty())
         : Scaffold(
             bottomSheet: checkoutSection(context),
+            appBar: AppBar(
+              iconTheme: IconThemeData(color: Colors.white),
+              backgroundColor: Color.fromARGB(255, 120, 66, 150),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  iconAppBar(
+                    Icons.notifications_outlined,
+                    () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Fevorit()));
+                    },
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  iconAppBar(
+                    Icons.favorite_outline,
+                    () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Fevorit()));
+                    },
+                  )
+                ],
+              ),
+            ),
+            endDrawer: DrawerScreen(),
             body: ShowappBar(
-              hight: 200,
+              hight: 80,
               child: Padding(
-                padding: const EdgeInsets.only(top: 70),
+                padding: const EdgeInsets.only(top: 50),
                 child: Container(
                   margin: EdgeInsets.only(bottom: 60),
                   child: ListView.builder(

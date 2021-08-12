@@ -76,7 +76,6 @@ class _CartFullState extends State<CartFull> {
           });
     }
 
-    // final themeChange = Provider.of<DarkThemeProvider>(context);
     final cartAttr = Provider.of<CartAttr>(context);
     final cartProvider = Provider.of<CartProvider>(context);
     double subTotal = cartAttr.price * cartAttr.quantity;

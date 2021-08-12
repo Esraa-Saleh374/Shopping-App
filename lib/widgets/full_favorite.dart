@@ -26,7 +26,17 @@ class _FullFevoritState extends State<FullFevorit> {
           Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * .17,
-            margin: EdgeInsets.only(right: 30, bottom: 10),
+            margin: EdgeInsets.only(left: 25, bottom: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 0,
+                  offset: Offset(1.5, 1.5), // changes position of shadow
+                ),
+              ],
+            ),
             child: Material(
               color: Theme.of(context).backgroundColor,
               borderRadius: BorderRadius.circular(5),
@@ -92,7 +102,7 @@ class _FullFevoritState extends State<FullFevorit> {
           ),
           Positioned(
             top: 25,
-            left: 15,
+            left: 10,
             child: Container(
               height: 30,
               width: 30,
