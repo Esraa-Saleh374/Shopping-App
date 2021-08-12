@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopping/config/const/theme_data.dart';
+import 'package:shopping/config/const/themedata.dart';
 import 'package:shopping/providers/darkmode_theme.dart';
+import 'package:shopping/screens/login.dart';
+import 'package:shopping/screens/register.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,19 +21,22 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
+  void initState() {
+    getCurrentTheme();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      routes: {
+        Login.routeName: (context) => Login(),
+        Register.routeName: (context) => Register(),
+      },
       title: ' ECommerce',
       theme: Styles.themeData(themeProvider.darkTheme, context),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to Flutter'),
-        ),
-        body: Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      home: Login(),
     );
   }
 }
