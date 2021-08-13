@@ -56,14 +56,16 @@ class EmptyFevorit extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 width: MediaQuery.of(context).size.width * 4,
                 height: MediaQuery.of(context).size.height * .06,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).accentColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
                   onPressed: () {
                     Navigator.of(context).pushNamed(Feeds.routeName);
                   },
-                  color: Colors.yellow,
                   child: Text(
                     "اضف الان ".toUpperCase(),
                     textAlign: TextAlign.center,

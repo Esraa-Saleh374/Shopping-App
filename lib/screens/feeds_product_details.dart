@@ -331,8 +331,9 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                 flex: 3,
                 child: Container(
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.redAccent.shade400,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.redAccent.shade400),
                     onPressed: () {
                       cartProvider.addProductToCart(productId, findProId.price,
                           findProId.title, findProId.imageUrl, findProId.offer);
@@ -354,8 +355,9 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                 flex: 2,
                 child: Container(
                   height: 50,
-                  child: RaisedButton(
-                    color: Theme.of(context).backgroundColor,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).backgroundColor),
                     onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

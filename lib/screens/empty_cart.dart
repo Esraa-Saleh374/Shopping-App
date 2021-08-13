@@ -44,13 +44,15 @@ class CartEmpty extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width * 0.9,
               height: MediaQuery.of(context).size.height * 0.06,
-              child: RaisedButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: Colors.yellow),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).accentColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    side: BorderSide(color: Colors.yellow),
+                  ),
                 ),
-                color: Colors.yellow,
+                onPressed: () {},
                 child: Text(
                   'تسوق الان '.toUpperCase(),
                   textAlign: TextAlign.center,

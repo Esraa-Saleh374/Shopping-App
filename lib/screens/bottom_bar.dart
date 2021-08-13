@@ -120,7 +120,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                   icon: Icon(
                     Icons.shopping_cart_outlined,
                   ),
-                  label: ('مشترياتك '),
+                  label: ('مشترياتك'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.search),

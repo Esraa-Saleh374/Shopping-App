@@ -5,9 +5,9 @@ class Styles {
     return ThemeData(
       fontFamily: "Tajawal",
       scaffoldBackgroundColor:
-          isDarkTheme ? Colors.black : Colors.grey.shade300,
+          isDarkTheme ? Colors.black : Colors.grey.shade100,
       primarySwatch: Colors.purple,
-      primaryColor: isDarkTheme ? Colors.black : Color(0xff774199),
+      primaryColor: isDarkTheme ? Colors.black : Color(0xff784296),
       accentColor: Color(0xfff5e551),
       backgroundColor: isDarkTheme ? Colors.grey.shade700 : Colors.white24,
       indicatorColor: isDarkTheme ? Color(0xff0E1D36) : Color(0xffCBDCF8),

@@ -35,12 +35,12 @@ class Products with ChangeNotifier {
     ),
     Product(
       id: 'Samsung Galaxy A51',
-      title: 'سامسونجA51',
+      title: 'سامسونج A51',
       isFavorite: false,
       quantity: 0,
       description:
           'Samsung Galaxy A51 (128GB, 4GB) 6.5", 48MP Quad Camera, Dual SIM GSM Unlocked A515F/DS- Global 4G LTE International Model - Prism Crush Blue.',
-      price: 50.99,
+      price: 100,
       imageUrl:
           'https://images-na.ssl-images-amazon.com/images/I/61HFJwSDQ4L._AC_SL1000_.jpg',
       brand: 'Samsung',
