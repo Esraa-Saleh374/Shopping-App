@@ -29,8 +29,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
       );
     }
 
-    //  int selectedDestination = 0;
-
     void selectDestination(int index) {
       setState(() {
         widget.selectedDestination = index;
@@ -81,7 +79,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 50,
                     ),
                     listTile(
                       "الرئيسيه",

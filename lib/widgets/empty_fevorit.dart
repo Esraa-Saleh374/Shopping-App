@@ -30,27 +30,19 @@ class EmptyFevorit extends StatelessWidget {
                 " قائمه المفضلات لديك فارغه ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 30,
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
+                  color: Colors.black,
+                  fontSize: 25,
                   fontWeight: FontWeight.w600,
                 ),
-              ),
-              SizedBox(
-                height: 20,
               ),
               Text(
-                "اضف الي قائمه المفضلات لديك الان ",
+                'يوجد منتجات كثيره يمكنك اضافتها الي قائمه المفضلات الان',
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  color: Colors.grey,
                   fontSize: 20,
-                  color: prov.darkTheme
-                      ? Theme.of(context).disabledColor
-                      : Colors.grey.shade600,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w400,
                 ),
-              ),
-              SizedBox(
-                height: 50,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 30),
@@ -71,8 +63,7 @@ class EmptyFevorit extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 25,
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                      color: Colors.purple,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

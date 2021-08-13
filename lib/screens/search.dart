@@ -53,7 +53,8 @@ class _SearchState extends State<Search> {
     return Scaffold(
       body: ShowappBar(
           hight: 80,
-          child: Column(
+          child: ListView(
+            scrollDirection: Axis.vertical,
             children: [
               Stack(
                 children: [
@@ -121,13 +122,15 @@ class _SearchState extends State<Search> {
                     height: 20,
                   ),
                   Container(
-                    height: 60,
+                    height: 90,
                     child: ListView.builder(
-                      // shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
+                      reverse: true,
                       itemCount: categories.length,
-                      itemBuilder: (context, index) =>
-                          Catogry(category: categories[index]),
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Catogry(category: categories[index]),
+                      ),
                     ),
                   ),
                   Padding(
@@ -174,9 +177,10 @@ class _SearchState extends State<Search> {
                           90,
                           "99",
                           Padding(
-                            padding: const EdgeInsets.only(right: 100),
+                            padding: const EdgeInsets.only(right: 50),
                             child: Container(
-                              //  padding: EdgeInsets.only(right: 50),
+                              width: 30,
+                              height: 30,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.orange,

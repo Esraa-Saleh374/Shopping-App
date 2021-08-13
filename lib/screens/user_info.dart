@@ -91,7 +91,7 @@ class _UserInfoState extends State<UserInfo> {
                   ),
                 ),
               ),
-              header("User Bag"),
+              header("المحتوي"),
               Consumer<FavoritProvider>(
                 builder: (_, fav, ch) => Badge(
                     badgeColor: Colors.purple[200]!,

@@ -24,11 +24,11 @@ class CartEmpty extends StatelessWidget {
               ),
             ),
             Text(
-              'سله مشترياتك فاضيه',
+              'سله مشترياتك فارغه',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
-                  fontSize: 36,
+                  color: Colors.black,
+                  fontSize: 25,
                   fontWeight: FontWeight.w600),
             ),
             Text(
@@ -38,8 +38,8 @@ class CartEmpty extends StatelessWidget {
                   color: themeChange.darkTheme
                       ? Theme.of(context).disabledColor
                       : Colors.grey,
-                  fontSize: 26,
-                  fontWeight: FontWeight.w600),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400),
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.9,
@@ -57,8 +57,7 @@ class CartEmpty extends StatelessWidget {
                   'تسوق الان '.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
+                      color: Colors.purple,
                       fontSize: 26,
                       fontWeight: FontWeight.w600),
                 ),
