@@ -69,33 +69,6 @@ class CartScreen extends StatelessWidget {
         ? Scaffold(body: CartEmpty())
         : Scaffold(
             bottomSheet: checkoutSection(context),
-            appBar: AppBar(
-              iconTheme: IconThemeData(color: Colors.white),
-              backgroundColor: Color.fromARGB(255, 120, 66, 150),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  iconAppBar(
-                    Icons.notifications_outlined,
-                    () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Fevorit()));
-                    },
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  iconAppBar(
-                    Icons.favorite_outline,
-                    () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Fevorit()));
-                    },
-                  )
-                ],
-              ),
-            ),
-            endDrawer: DrawerScreen(),
             body: ShowappBar(
               hight: 80,
               child: Padding(

@@ -114,8 +114,8 @@ class _FullFevoritState extends State<FullFevorit> {
                 ),
                 onPressed: () {
                   showDailog.showTheDialog(
-                    "Remove Item ! ",
-                    "Your Favorit Item will remove",
+                    "حذف كل العناصر ! ",
+                    "سوف يتم حذف جميع العناصر لديك ",
                     () {
                       favProvider.removeitem(widget.productId);
                     },

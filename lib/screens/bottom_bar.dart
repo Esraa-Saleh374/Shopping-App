@@ -1,7 +1,9 @@
+import 'package:shopping/screens/favorit.dart';
 import 'package:shopping/screens/homepage.dart';
 import 'package:shopping/screens/search.dart';
 import 'package:shopping/screens/user_info.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping/widgets/drawer_screen.dart';
 import 'cart.dart';
 import 'feeds.dart';
 
@@ -42,10 +44,47 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     });
   }
 
+  Widget iconAppBar(IconData icon, Function tap) {
+    return InkWell(
+      onTap: () => tap(),
+      child: Icon(
+        icon,
+        color: Colors.yellow,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Color.fromARGB(255, 120, 66, 150),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            iconAppBar(
+              Icons.notifications_outlined,
+              () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Fevorit()));
+              },
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            iconAppBar(
+              Icons.favorite_outline,
+              () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Fevorit()));
+              },
+            )
+          ],
+        ),
+      ),
       body: _pages[_selectedPageIndex]['page'] as Widget,
+      endDrawer: DrawerScreen(_selectedPageIndex),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 0.01,

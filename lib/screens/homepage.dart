@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/widgets/category/appbar.dart';
-import 'package:shopping/widgets/drawer_screen.dart';
+import 'package:dotted_line/dotted_line.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,42 +8,72 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Widget detailCart(IconData icon, String text) {
+    return Expanded(
+      flex: 2,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {},
+              child: Container(
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey,
+                  ),
+                  child: Icon(
+                    icon,
+                    size: 30,
+                  )),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Center(child: Text(text)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget dashLine() {
+    return Expanded(
+        flex: 2,
+        child: DottedLine(
+          direction: Axis.horizontal,
+          dashColor: Colors.purple,
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 120, 66, 150),
-      ),
       body: ShowappBar(
         hight: 150,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 80.0),
-          child: Row(
-            children: [
-              InkWell(
-                onTap: () {},
-                child: Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.amber,
-
-                      // image: DecorationImage(
-                      //     image: NetworkImage(
-                      //   'https://imcut.jollychic.com//uploads/jollyimg/imageLibrary/201903/8SV/03/IL201903032021362101.jpg',
-                      // )
-                      // ),
-                    ),
-                    child: Image.network(
-                      'https://imcut.jollychic.com//uploads/jollyimg/imageLibrary/201903/8SV/03/IL201903032021362101.jpg',
-                    )),
-              )
-            ],
-          ),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 75.0, right: 8, left: 8),
+              child: Container(
+                width: double.infinity,
+                height: 118,
+                child: Row(
+                  children: [
+                    detailCart(Icons.payment, 'تفاصيل الدفع '),
+                    dashLine(),
+                    detailCart(Icons.location_on, "تفاصيل الشحن "),
+                    dashLine(),
+                    detailCart(Icons.details_outlined, "تفاصيل الطلب "),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      endDrawer: DrawerScreen(),
     );
   }
 }
