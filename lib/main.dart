@@ -6,6 +6,8 @@ import 'package:shopping/providers/products_provider.dart';
 import 'package:shopping/providers/darkmode_theme.dart';
 import 'package:shopping/screens/bottom_bar.dart';
 import 'package:shopping/screens/categor_feed.dart';
+import 'package:shopping/screens/auth/login.dart';
+
 import 'package:shopping/screens/feeds.dart';
 import 'package:shopping/screens/feeds_product_details.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +72,7 @@ class _MyAppState extends State<MyApp> {
           },
           title: ' ECommerce',
           theme: Styles.themeData(themeProvider.darkTheme, context),
-          home: BottomBarScreen(),
+          home: Login(),
         );
       }),
     );
