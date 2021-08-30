@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=E:\Local DIsk D\Programs\flutter_windows_2.2.1-stable\flutter"
+export "FLUTTER_ROOT=E:\Programs\flutter_windows_2.2.1-stable\flutter"
 export "FLUTTER_APPLICATION_PATH=C:\Users\sAW\Documents\GitHub\Shopping-App"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib\main.dart"

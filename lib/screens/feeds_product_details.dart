@@ -21,6 +21,7 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
           children: [
             Text(
               text,
+              textDirection: TextDirection.rtl,
               maxLines: 2,
               style: TextStyle(
                 fontSize: 21,
@@ -125,64 +126,69 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                       padding:
                           const EdgeInsets.only(top: 16, right: 16, left: 16),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * .9,
-                            child: Text(
-                              findProId.title,
-                              maxLines: 2,
-                              style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w600,
+                          Row(
+                            textDirection: TextDirection.rtl,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                findProId.title,
+                                textDirection: TextDirection.rtl,
+                                maxLines: 2,
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            // height: 440,
-                            child: Text(
-                              "US \$ ${findProId.price}",
-                              maxLines: 2,
-                              style: TextStyle(
-                                fontSize: 21,
-                                color: prov.darkTheme
-                                    ? Theme.of(context).disabledColor
-                                    : Colors.grey[600],
-                                fontWeight: FontWeight.w600,
+                              SizedBox(
+                                height: 10,
                               ),
-                            ),
+                              Text(
+                                " ${findProId.price}\$ US",
+                                maxLines: 2,
+                                style: TextStyle(
+                                  fontSize: 21,
+                                  color: prov.darkTheme
+                                      ? Theme.of(context).disabledColor
+                                      : Colors.grey[600],
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(
                             height: 15,
                           ),
                           Divider(
-                            color: Colors.grey,
+                            color: Colors.grey.shade300,
+                            endIndent: 20,
+                            indent: 20,
                             height: 1,
                             thickness: 1,
                           ),
                           SizedBox(
                             height: 15,
                           ),
-                          Text(
-                            findProId.description,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 21,
-                              color: prov.darkTheme
-                                  ? Theme.of(context).disabledColor
-                                  : Colors.grey[600],
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                          Text(findProId.description,
+                              // maxLines: 2,
+                              textDirection: TextDirection.rtl,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1!
+                                  .copyWith(
+                                    color: prov.darkTheme
+                                        ? Theme.of(context).disabledColor
+                                        : Colors.grey[600],
+                                    fontWeight: FontWeight.w600,
+                                  )),
                           SizedBox(
                             height: 15,
                           ),
                           Divider(
-                            color: Colors.grey,
+                            color: Colors.grey.shade300,
+                            endIndent: 20,
+                            indent: 20,
                             height: 1,
                             thickness: 1,
                           ),
@@ -204,7 +210,9 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                             height: 15,
                           ),
                           Divider(
-                            color: Colors.grey,
+                            color: Colors.grey.shade300,
+                            endIndent: 20,
+                            indent: 20,
                             height: 1,
                             thickness: 1,
                           ),
@@ -252,7 +260,9 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                       height: 50,
                     ),
                     Divider(
-                      color: Colors.grey,
+                      color: Colors.grey.shade300,
+                      endIndent: 20,
+                      indent: 20,
                       height: 1,
                       thickness: 1,
                     ),
@@ -331,8 +341,9 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                 flex: 3,
                 child: Container(
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.redAccent.shade400,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.redAccent.shade400),
                     onPressed: () {
                       cartProvider.addProductToCart(productId, findProId.price,
                           findProId.title, findProId.imageUrl, findProId.offer);
@@ -354,8 +365,9 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                 flex: 2,
                 child: Container(
                   height: 50,
-                  child: RaisedButton(
-                    color: Theme.of(context).backgroundColor,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).backgroundColor),
                     onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

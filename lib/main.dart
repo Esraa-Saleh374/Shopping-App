@@ -1,5 +1,7 @@
+import 'package:shopping/screens/auth/login.dart';
+import 'package:shopping/screens/auth/register.dart';
 import 'package:shopping/screens/brandes/brands_navigator.dart';
-import 'package:shopping/config/const/theme_data.dart';
+import 'package:shopping/config/const/themedata.dart';
 import 'package:shopping/providers/cart_provider.dart';
 import 'package:shopping/providers/favorite_provider.dart';
 import 'package:shopping/providers/products_provider.dart';
@@ -65,12 +67,15 @@ class _MyAppState extends State<MyApp> {
             BrandNavigationRailScreen.routeName: (context) =>
                 BrandNavigationRailScreen(),
             Feeds.routeName: (context) => Feeds(),
+            Login.routeName: (context) => Login(),
+            Register.routeName: (context) => Register(),
             CategoryFeedCsreens.routeName: (context) => CategoryFeedCsreens(),
+            BottomBarScreen.routeName: (context) => BottomBarScreen(),
             FeedsProductDetails.routeName: (context) => FeedsProductDetails(),
           },
           title: ' ECommerce',
           theme: Styles.themeData(themeProvider.darkTheme, context),
-          home: BottomBarScreen(),
+          home: Login(),
         );
       }),
     );

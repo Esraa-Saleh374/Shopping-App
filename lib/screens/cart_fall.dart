@@ -3,6 +3,7 @@ import 'package:shopping/providers/cart_provider.dart';
 import 'package:shopping/screens/feeds_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping/widgets/category/content_inside.dart';
 
 class CartFull extends StatefulWidget {
   final String productId;
@@ -18,7 +19,11 @@ class _CartFullState extends State<CartFull> {
     return Text(
       " $value دينار",
       textDirection: TextDirection.rtl,
-      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+      style: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
     );
   }
 
@@ -72,187 +77,126 @@ class _CartFullState extends State<CartFull> {
           });
     }
 
-    // final themeChange = Provider.of<DarkThemeProvider>(context);
     final cartAttr = Provider.of<CartAttr>(context);
     final cartProvider = Provider.of<CartProvider>(context);
     double subTotal = cartAttr.price * cartAttr.quantity;
     return InkWell(
       onTap: () => Navigator.pushNamed(context, FeedsProductDetails.routeName,
           arguments: widget.productId),
-      child: Container(
-        height: 155,
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).backgroundColor,
-        ),
-        child: Row(
-          children: [
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+      child: Column(
+        children: [
+          Content(
+              cartAttr.title,
+              cartAttr.quantity,
+              '${subTotal.toStringAsFixed(2)}',
+              Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(32.0),
-                            // splashColor: ,
-                            onTap: () {
-                              _showDialog("!حذف العنصر",
-                                  "هذا المنتج سوف يتم حذفه من عربيه التسوق",
-                                  () {
-                                cartProvider.removeitem(widget.productId);
-                              });
-                            },
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              child: Icon(
-                                Icons.close,
-                                color: Colors.grey,
-                                size: 22,
-                              ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(4.0),
+                        onTap: cartAttr.quantity <= 1
+                            ? null
+                            : () {
+                                cartProvider.reduceProductToCart(
+                                  widget.productId,
+                                  cartAttr.price,
+                                  cartAttr.title,
+                                  cartAttr.imageUrl,
+                                  cartAttr.offer,
+                                );
+                              },
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Icon(
+                              Icons.remove,
+                              color: cartAttr.quantity <= 1
+                                  ? Colors.grey
+                                  : Colors.red,
+                              size: 22,
                             ),
                           ),
                         ),
-                        Flexible(
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.1,
+                          padding: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(),
                           child: Text(
-                            cartAttr.title,
-                            overflow: TextOverflow.ellipsis,
+                            cartAttr.quantity.toString(),
+                            strutStyle: StrutStyle(forceStrutHeight: true),
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontWeight: FontWeight.w800, fontSize: 18),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          child: Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black45,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(4.0),
-                                    onTap: cartAttr.quantity < 2
-                                        ? null
-                                        : () {
-                                            cartProvider.reduceProductToCart(
-                                              widget.productId,
-                                              cartAttr.price,
-                                              cartAttr.title,
-                                              cartAttr.imageUrl,
-                                              cartAttr.offer,
-                                            );
-                                          },
-                                    child: Container(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Icon(
-                                          Icons.remove,
-                                          color: cartAttr.quantity < 2
-                                              ? Colors.grey
-                                              : Colors.red,
-                                          size: 22,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                      padding: const EdgeInsets.all(8.0),
-                                      decoration: BoxDecoration(),
-                                      child: Text(
-                                        cartAttr.quantity.toString(),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(4.0),
-                                    onTap: () {
-                                      cartProvider.addProductToCart(
-                                          widget.productId,
-                                          cartAttr.price,
-                                          cartAttr.title,
-                                          cartAttr.imageUrl,
-                                          cartAttr.offer);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Icon(
-                                        Icons.add,
-                                        color: Colors.green,
-                                        size: 22,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(4.0),
+                        onTap: () {
+                          cartProvider.addProductToCart(
+                              widget.productId,
+                              cartAttr.price,
+                              cartAttr.title,
+                              cartAttr.imageUrl,
+                              cartAttr.offer);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.green,
+                            size: 22,
                           ),
                         ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Flexible(
-                          flex: 1,
-                          child: showproducDetail(
-                              '  ${subTotal.toStringAsFixed(2)}  '),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      '%${cartAttr.offer.toString()}خصم',
+                      ),
                     ),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.network(
-                    cartAttr.imageUrl,
-                    fit: BoxFit.contain,
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(32.0),
+                  onTap: () {
+                    _showDialog("!حذف العنصر",
+                        "هذا المنتج سوف يتم حذفه من عربيه التسوق", () {
+                      cartProvider.removeitem(widget.productId);
+                    });
+                  },
+                  child: Container(
+                    child: Icon(
+                      Icons.close,
+                      color: Colors.grey.shade400,
+                      size: 20,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
+              '%${cartAttr.offer.toString()} خصم',
+              cartAttr.imageUrl),
+        ],
       ),
     );
   }

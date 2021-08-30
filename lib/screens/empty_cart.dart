@@ -6,64 +6,51 @@ class CartEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
-    return ListView(
-      scrollDirection: Axis.vertical,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 80),
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.34,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage("assets/empty.png"),
-                ),
-              ),
-            ),
-            Text(
-              'سله مشترياتك فاضيه',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Theme.of(context).textSelectionTheme.selectionColor,
-                  fontSize: 36,
-                  fontWeight: FontWeight.w600),
-            ),
-            Text(
-              '  يوجد منتجات كثيره في انتظارك يمكنك شرائها',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: themeChange.darkTheme
-                      ? Theme.of(context).disabledColor
-                      : Colors.grey,
-                  fontSize: 26,
-                  fontWeight: FontWeight.w600),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.height * 0.06,
-              child: RaisedButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: Colors.red),
-                ),
-                color: Colors.redAccent,
-                child: Text(
-                  'تسوق الان '.toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                      fontSize: 26,
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-          ],
+        Spacer(flex: 2),
+        Image.asset("assets/images/empty.png", scale: 1.2),
+        Spacer(),
+        Text(
+          'سله مشترياتك فارغه',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
         ),
+        SizedBox(height: 4),
+        Text(
+          '  يوجد منتجات كثيره في انتظارك يمكنك شرائها',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: themeChange.darkTheme
+                  ? Theme.of(context).disabledColor
+                  : Colors.grey,
+              fontSize: 18,
+              fontWeight: FontWeight.w400),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: TextButton(
+            onPressed: () {},
+            child: Text("تسوق الأن",
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                    color: Theme.of(context).primaryColor)),
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).accentColor,
+              onPrimary: Colors.black,
+              fixedSize: Size(MediaQuery.of(context).size.width, 65),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Spacer(flex: 2),
       ],
     );
   }

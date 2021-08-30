@@ -1,9 +1,16 @@
+// Dart
 import 'package:flutter/material.dart';
-import 'package:shopping/widgets/category/appbar.dart';
-import 'package:shopping/models/product_list.dart';
-import 'package:shopping/providers/products_provider.dart';
-import 'package:shopping/widgets/feed_product.dart';
 import 'package:provider/provider.dart';
+// Providers
+import 'package:shopping/providers/products_provider.dart';
+// Wwdgets
+import 'package:shopping/widgets/category.dart';
+import 'package:shopping/widgets/category/appbar.dart';
+import 'package:shopping/widgets/category/content_inside.dart';
+// Models
+import 'package:shopping/models/product_list.dart';
+// Data
+import 'package:shopping/data/categories.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -12,7 +19,18 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   TextEditingController? _searchTextController;
-  final FocusNode _node = FocusNode();
+  List<Product> _searchList = [];
+  List categories = categoresList;
+  Widget iconAppBar(IconData icon, Function tap) {
+    return InkWell(
+      onTap: () => tap(),
+      child: Icon(
+        icon,
+        color: Colors.yellow,
+      ),
+    );
+  }
+
   void initState() {
     super.initState();
     _searchTextController = TextEditingController();
@@ -21,7 +39,11 @@ class _SearchState extends State<Search> {
     });
   }
 
-  List<Product> _searchList = [];
+  @override
+  void dispose() {
+    _searchTextController!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,119 +51,153 @@ class _SearchState extends State<Search> {
     final productsList = serviceData.products;
 
     return Scaffold(
-        body: ShowappBar(
-      hight: 300,
-      child: Column(
-        children: [
-          Stack(
+      body: ShowappBar(
+          hight: 80,
+          child: ListView(
+            scrollDirection: Axis.vertical,
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 120),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                      ),
-                    ],
-                  ),
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    controller: _searchTextController,
-                    minLines: 1,
-                    focusNode: _node,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
+              Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
                         ),
                       ),
-                      prefixIcon: Icon(
-                        Icons.search,
-                      ),
-                      hintText: 'Search',
-                      filled: true,
-                      fillColor: Theme.of(context).cardColor,
-                      suffixIcon: IconButton(
-                        onPressed: _searchTextController!.text.isEmpty
-                            ? null
-                            : () {
-                                _searchTextController!.clear();
-                                _node.unfocus();
-                              },
-                        icon: Icon(Icons.clear,
-                            color: _searchTextController!.text.isNotEmpty
-                                ? Colors.red
-                                : Colors.grey),
+                      margin: EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        controller: _searchTextController,
+                        minLines: 1,
+                        focusNode: FocusNode(),
+                        textDirection: TextDirection.rtl,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          prefixIcon: Container(
+                            height: 67,
+                            width: 67,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 120, 66, 150),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Icon(
+                              Icons.notes_outlined,
+                              color: Colors.yellow,
+                              size: 40,
+                            ),
+                          ),
+                          hintTextDirection: TextDirection.rtl,
+                          hintText: '...اكتب كلمه البحث ',
+                          filled: true,
+                          fillColor: Theme.of(context).cardColor,
+                          suffixIcon: Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                            size: 40,
+                          ),
+                        ),
+                        onChanged: (value) {
+                          _searchTextController!.text.toLowerCase();
+                          setState(() {
+                            _searchList = serviceData.searchQuery(value);
+                          });
+                        },
                       ),
                     ),
-                    onChanged: (value) {
-                      _searchTextController!.text.toLowerCase();
-                      setState(() {
-                        _searchList = serviceData.searchQuery(value);
-                      });
-                    },
                   ),
-                ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 90,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
+                      itemCount: categories.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Catogry(category: categories[index]),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          child: Text(
+                            "نتائج البحث ",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            textDirection: TextDirection.rtl,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          color: Color.fromARGB(255, 120, 66, 150),
+                          width: 3,
+                          height: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                  _searchTextController!.text.isNotEmpty && _searchList.isEmpty
+                      // if you search an error prouduct
+                      ? Center(
+                          child: Text(
+                            'عذرا ! هذا المنتج غير موجود ',
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        )
+                      // result of search here
+                      : Content(
+                          "serch",
+                          90,
+                          "99",
+                          Padding(
+                            padding: const EdgeInsets.only(right: 50),
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.orange,
+                              ),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Text(""),
+                          "offer",
+                          "https://www.tech-mag.net/wp-content/uploads/2019/12/Best-Phones-For-2019-Medium.jpg")
+                ],
               ),
             ],
-          ),
-          _searchTextController!.text.isNotEmpty && _searchList.isEmpty
-              ? Column(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Icon(
-                      Icons.search,
-                      size: 60,
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'No results found',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                )
-              : Expanded(
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      GridView.count(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        crossAxisCount: 2,
-                        childAspectRatio: 240 / 420,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                        children: List.generate(
-                            _searchTextController!.text.isEmpty
-                                ? productsList.length
-                                : _searchList.length, (index) {
-                          return ChangeNotifierProvider.value(
-                            value: _searchTextController!.text.isEmpty
-                                ? productsList[index]
-                                : _searchList[index],
-                            child: FeedsProduct(),
-                          );
-                        }),
-                      ),
-                    ],
-                  ),
-                ),
-        ],
-      ),
-    ));
+          )),
+    );
   }
 }
