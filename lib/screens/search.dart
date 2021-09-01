@@ -8,7 +8,7 @@ import 'package:shopping/widgets/category.dart';
 import 'package:shopping/widgets/category/appbar.dart';
 import 'package:shopping/widgets/category/content_inside.dart';
 // Models
-import 'package:shopping/models/product_list.dart';
+import 'package:shopping/models/product.dart';
 // Data
 import 'package:shopping/data/categories.dart';
 

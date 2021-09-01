@@ -1,4 +1,4 @@
-import 'package:shopping/models/product_list.dart';
+import 'package:shopping/models/product.dart';
 import 'package:shopping/providers/products_provider.dart';
 import 'package:shopping/widgets/feed_product.dart';
 import 'package:flutter/material.dart';

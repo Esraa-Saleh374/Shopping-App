@@ -12,6 +12,9 @@ class Product with ChangeNotifier {
   final bool isFavorite;
   final bool isPopular;
   final String offer;
+  final double weight;
+  final double volum;
+  final String country;
 
   Product({
     required this.id,
@@ -25,5 +28,8 @@ class Product with ChangeNotifier {
     required this.isFavorite,
     required this.isPopular,
     required this.offer,
+    required this.weight,
+    required this.volum,
+    required this.country,
   });
 }

@@ -25,6 +25,8 @@ class Styles {
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
           colorScheme: isDarkTheme ? ColorScheme.dark() : ColorScheme.light()),
       appBarTheme: AppBarTheme(
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
         elevation: 0.0,
       ),
     );

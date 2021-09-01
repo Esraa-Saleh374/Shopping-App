@@ -1,4 +1,4 @@
-import 'package:shopping/models/product_list.dart';
+import 'package:shopping/models/product.dart';
 import 'package:flutter/material.dart';
 
 class Products with ChangeNotifier {
@@ -17,6 +17,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'موبيل',
       isPopular: false,
       offer: '20',
+      weight: .80,
+      volum: .980,
+      country: "السعوديه",
     ),
     Product(
       id: 'Samsung Galaxy A10s',
@@ -24,7 +27,7 @@ class Products with ChangeNotifier {
       isFavorite: false,
       quantity: 0,
       description:
-          'Samsung Galaxy A10s A107M - 32GB, 6.2" HD+ Infinity-V Display, 13MP+2MP Dual Rear +8MP Front Cameras, GSM Unlocked Smartphone - Blue.',
+          ' هذا النص قابل للتغير ويمكن استبداله في اي وقت . هذا النص قابل للتغير ويمكن استبداله في اي وقت . هذا النص قابل للتغير ويمكن استبداله في اي وقت  ',
       price: 50.99,
       imageUrl:
           'https://images-na.ssl-images-amazon.com/images/I/51ME-ADMjRL._AC_SL1000_.jpg',
@@ -32,6 +35,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Phones',
       isPopular: false,
       offer: '20',
+      weight: .200,
+      volum: 2.60,
+      country: "مصر",
     ),
     Product(
       id: 'Samsung Galaxy A51',
@@ -47,6 +53,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Phones',
       isPopular: true,
       offer: '70',
+      weight: 7.200,
+      volum: 6.60,
+      country: "مصر",
     ),
     Product(
       id: 'Huawei P40 Pro',
@@ -62,6 +71,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Phones',
       isPopular: true,
       offer: '30',
+      weight: .200,
+      volum: 2.60,
+      country: "مصر",
     ),
     Product(
       id: 'iPhone 12 Pro',
@@ -76,6 +88,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Phones',
       isPopular: true,
       offer: '10',
+      weight: .200,
+      volum: 2.60,
+      country: "الكويت",
     ),
     Product(
       id: 'iPhone 12 Pro Max ',
@@ -90,6 +105,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Phones',
       isPopular: false,
       offer: '20',
+      weight: .200,
+      volum: 2.60,
+      country: "الكويت",
     ),
     Product(
       id: 'Hanes Mens ',
@@ -104,6 +122,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Clothes',
       isPopular: true,
       offer: '20',
+      weight: .200,
+      volum: 2.60,
+      country: "الكويت",
     ),
     Product(
       id: 'Weave Jogger',
@@ -118,6 +139,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Clothes',
       isPopular: false,
       offer: '20',
+      weight: .200,
+      volum: 2.60,
+      country: "الكويت",
     ),
     Product(
       id: 'Adeliber Dresses for Womens',
@@ -133,6 +157,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Clothes',
       isPopular: true,
       offer: '30',
+      weight: .200,
+      volum: 2.60,
+      country: "الامارات",
     ),
     Product(
       id: 'Tanjun Sneakers',
@@ -148,6 +175,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Shoes',
       isPopular: false,
       offer: '20',
+      weight: .200,
+      volum: 2.60,
+      country: "الكويت",
     ),
     Product(
       id: 'choose Sneakers',
@@ -163,6 +193,9 @@ class Products with ChangeNotifier {
       productCategoryName: 'Shoes',
       isPopular: true,
       offer: '20',
+      weight: .200,
+      volum: 2.60,
+      country: "الكويت",
     ),
   ];
 
