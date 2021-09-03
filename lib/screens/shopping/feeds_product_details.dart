@@ -1,8 +1,6 @@
 import 'package:shopping/providers/cart_provider.dart';
 import 'package:shopping/providers/products_provider.dart';
 import 'package:shopping/providers/darkmode_theme.dart';
-import 'package:shopping/screens/cart.dart';
-import 'package:shopping/screens/favorit.dart';
 import 'package:shopping/widgets/category/appbar.dart';
 import 'package:shopping/widgets/feed_product.dart';
 import 'package:flutter/material.dart';
@@ -60,42 +58,56 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
     final cartProvider = Provider.of<CartProvider>(context);
     double extraHeight = (MediaQuery.of(context).padding.top + kToolbarHeight);
 
-    return Container(
-      color: Colors.grey,
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: RoundedAppBar(),
-        //  AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,
-        //   title: Text("Details ".toUpperCase()),
-        //   actions: [
-        //     IconButton(
-        //         icon: Icon(
-        //           Icons.favorite_border,
-        //           color: Theme.of(context).accentColor,
-        //         ),
-        //         onPressed: () {
-        //           Navigator.of(context)
-        //               .push(MaterialPageRoute(builder: (context) => Fevorit()));
-        //         }),
-        //     IconButton(
-        //         icon: Icon(
-        //           Icons.shopping_cart_sharp,
-        //           color: Colors.white,
-        //         ),
-        //         onPressed: () {
-        //           Navigator.of(context).push(
-        //               MaterialPageRoute(builder: (context) => CartScreen()));
-        //         }),
-        //   ],
-        // ),
-        body: Stack(children: [
-          SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.grey.shade300,
+      appBar: RoundedAppBar(
+        title: findProId.title,
+      ),
+      //  AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   title: Text("Details ".toUpperCase()),
+      //   actions: [
+      //     IconButton(
+      //         icon: Icon(
+      //           Icons.favorite_border,
+      //           color: Theme.of(context).accentColor,
+      //         ),
+      //         onPressed: () {
+      //           Navigator.of(context)
+      //               .push(MaterialPageRoute(builder: (context) => Fevorit()));
+      //         }),
+      //     IconButton(
+      //         icon: Icon(
+      //           Icons.shopping_cart_sharp,
+      //           color: Colors.white,
+      //         ),
+      //         onPressed: () {
+      //           Navigator.of(context).push(
+      //               MaterialPageRoute(builder: (context) => CartScreen()));
+      //         }),
+      //   ],
+      // ),
+      body: Column(children: [
+        Flexible(
+          flex: 2,
+          child: Container(
+            color: Colors.grey.shade300,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Image.network(
+                findProId.imageUrl,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+        ),
+        Flexible(
+          flex: 4,
+          child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height - extraHeight,
               color: Theme.of(context).scaffoldBackgroundColor,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 // verticalDirection: VerticalDirection.up,
@@ -139,9 +151,6 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
                   ),
                   Divider(
                     color: Colors.grey.shade300,
@@ -371,102 +380,89 @@ class _FeedsProductDetailsState extends State<FeedsProductDetails> {
               ),
             ),
           ),
+        ),
 
-          Container(
-            height: MediaQuery.of(context).size.height * .40 - kToolbarHeight,
-            width: double.infinity,
-            color: Colors.grey.shade300,
-            foregroundDecoration: BoxDecoration(color: Colors.black12),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: Image.network(
-                findProId.imageUrl,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          // Align(
-          //   alignment: Alignment.bottomRight,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.start,
-          //     children: [
-          //       Expanded(
-          //         flex: 3,
-          //         child: Container(
-          //           height: 50,
-          //           child: ElevatedButton(
-          //             style: ElevatedButton.styleFrom(
-          //                 primary: Colors.redAccent.shade400),
-          //             onPressed: () {
-          //               cartProvider.addProductToCart(productId, findProId.price,
-          //                   findProId.title, findProId.imageUrl, findProId.offer);
-          //             },
-          //             child: Text(
-          //               cartProvider.getCartItem.containsKey(productId)
-          //                   ? "In Cart "
-          //                   : " add to cart".toUpperCase(),
-          //               style: TextStyle(
-          //                 fontSize: 18,
-          //                 color: Colors.white,
-          //                 fontWeight: FontWeight.w600,
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //       // Expanded(
-          //       //   flex: 2,
-          //       //   child: Container(
-          //       //     height: 50,
-          //       //     child: ElevatedButton(
-          //       //       style: ElevatedButton.styleFrom(
-          //       //           primary: Theme.of(context).backgroundColor),
-          //       //       onPressed: () {},
-          //       //       child: Row(
-          //       //         mainAxisAlignment: MainAxisAlignment.start,
-          //       //         children: [
-          //       //           Text(
-          //       //             "buy now".toUpperCase(),
-          //       //             style: TextStyle(
-          //       //               fontSize: 14,
-          //       //               color: Colors.black,
-          //       //               fontWeight: FontWeight.w600,
-          //       //             ),
-          //       //           ),
-          //       //           SizedBox(
-          //       //             width: 5,
-          //       //           ),
-          //       //           Icon(
-          //       //             Icons.payment,
-          //       //             size: 20,
-          //       //             color: Colors.green,
-          //       //           )
-          //       //         ],
-          //       //       ),
-          //       //     ),
-          //       //   ),
-          //       // ),
-          //       // Expanded(
-          //       //   flex: 1,
-          //       //   child: Container(
-          //       //     height: 50,
-          //       //     color: prov.darkTheme
-          //       //         ? Theme.of(context).disabledColor
-          //       //         : Colors.grey[600],
-          //       //     child: IconButton(
-          //       //       onPressed: () {},
-          //       //       icon: Icon(
-          //       //         Icons.favorite,
-          //       //         color: Colors.white,
-          //       //       ),
-          //       //     ),
-          //       //   ),
-          //       // )
-          //     ],
-          //   ),
-          // )
-        ]),
-      ),
+        // Align(
+        //   alignment: Alignment.bottomRight,
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     children: [
+        //       Expanded(
+        //         flex: 3,
+        //         child: Container(
+        //           height: 50,
+        //           child: ElevatedButton(
+        //             style: ElevatedButton.styleFrom(
+        //                 primary: Colors.redAccent.shade400),
+        //             onPressed: () {
+        //               cartProvider.addProductToCart(productId, findProId.price,
+        //                   findProId.title, findProId.imageUrl, findProId.offer);
+        //             },
+        //             child: Text(
+        //               cartProvider.getCartItem.containsKey(productId)
+        //                   ? "In Cart "
+        //                   : " add to cart".toUpperCase(),
+        //               style: TextStyle(
+        //                 fontSize: 18,
+        //                 color: Colors.white,
+        //                 fontWeight: FontWeight.w600,
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //       ),
+        //       // Expanded(
+        //       //   flex: 2,
+        //       //   child: Container(
+        //       //     height: 50,
+        //       //     child: ElevatedButton(
+        //       //       style: ElevatedButton.styleFrom(
+        //       //           primary: Theme.of(context).backgroundColor),
+        //       //       onPressed: () {},
+        //       //       child: Row(
+        //       //         mainAxisAlignment: MainAxisAlignment.start,
+        //       //         children: [
+        //       //           Text(
+        //       //             "buy now".toUpperCase(),
+        //       //             style: TextStyle(
+        //       //               fontSize: 14,
+        //       //               color: Colors.black,
+        //       //               fontWeight: FontWeight.w600,
+        //       //             ),
+        //       //           ),
+        //       //           SizedBox(
+        //       //             width: 5,
+        //       //           ),
+        //       //           Icon(
+        //       //             Icons.payment,
+        //       //             size: 20,
+        //       //             color: Colors.green,
+        //       //           )
+        //       //         ],
+        //       //       ),
+        //       //     ),
+        //       //   ),
+        //       // ),
+        //       // Expanded(
+        //       //   flex: 1,
+        //       //   child: Container(
+        //       //     height: 50,
+        //       //     color: prov.darkTheme
+        //       //         ? Theme.of(context).disabledColor
+        //       //         : Colors.grey[600],
+        //       //     child: IconButton(
+        //       //       onPressed: () {},
+        //       //       icon: Icon(
+        //       //         Icons.favorite,
+        //       //         color: Colors.white,
+        //       //       ),
+        //       //     ),
+        //       //   ),
+        //       // )
+        //     ],
+        //   ),
+        // )
+      ]),
     );
   }
 }

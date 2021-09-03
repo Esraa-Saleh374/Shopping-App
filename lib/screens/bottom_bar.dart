@@ -1,11 +1,11 @@
-import 'package:shopping/screens/favorit.dart';
+import 'package:shopping/screens/shopping/favorit.dart';
 import 'package:shopping/screens/homepage.dart';
-import 'package:shopping/screens/search.dart';
-import 'package:shopping/screens/user_info.dart';
+import 'package:shopping/screens/shopping/search.dart';
+import 'package:shopping/screens/settings/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping/widgets/drawer_screen.dart';
-import 'cart.dart';
-import 'feeds.dart';
+import 'package:shopping/screens/shopping/cart.dart';
+import 'package:shopping/screens/shopping/feeds.dart';
 
 class BottomBarScreen extends StatefulWidget {
   static const routeName = "bottom_bar";

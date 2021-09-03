@@ -7,11 +7,12 @@ import 'package:shopping/providers/favorite_provider.dart';
 import 'package:shopping/providers/products_provider.dart';
 import 'package:shopping/providers/darkmode_theme.dart';
 import 'package:shopping/screens/bottom_bar.dart';
-import 'package:shopping/screens/categor_feed.dart';
-import 'package:shopping/screens/feeds.dart';
-import 'package:shopping/screens/feeds_product_details.dart';
+import 'package:shopping/screens/shopping/categor_feed.dart';
+import 'package:shopping/screens/shopping/feeds.dart';
+import 'package:shopping/screens/shopping/feeds_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -62,6 +63,16 @@ class _MyAppState extends State<MyApp> {
       ],
       child: Consumer<DarkThemeProvider>(builder: (context, themData, child) {
         return MaterialApp(
+          // localizationsDelegates: [
+          //   GlobalCupertinoLocalizations.delegate,
+          //   GlobalMaterialLocalizations.delegate,
+          //   GlobalWidgetsLocalizations.delegate,
+          // ],
+          // supportedLocales: [
+          //   Locale("ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales
+          // ],
+          // locale:
+          //     Locale("ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales,
           debugShowCheckedModeBanner: false,
           routes: {
             BrandNavigationRailScreen.routeName: (context) =>

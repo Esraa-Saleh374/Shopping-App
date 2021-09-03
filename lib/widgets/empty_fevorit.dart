@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/providers/darkmode_theme.dart';
-import 'package:shopping/screens/feeds.dart';
+import 'package:shopping/screens/shopping/feeds.dart';
 
 import 'package:provider/provider.dart';
 

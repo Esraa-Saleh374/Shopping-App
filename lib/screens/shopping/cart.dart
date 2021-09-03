@@ -1,8 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:shopping/widgets/category/appbar.dart';
 import 'package:shopping/providers/cart_provider.dart';
-import 'package:shopping/screens/cart_fall.dart';
-import 'package:shopping/screens/empty_cart.dart';
+import 'package:shopping/screens/shopping/cart_fall.dart';
+import 'package:shopping/screens/shopping/empty_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

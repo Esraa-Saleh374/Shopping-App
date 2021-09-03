@@ -26,36 +26,50 @@ class ShowappBar extends StatelessWidget {
 }
 
 class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  RoundedAppBar({this.title = ""});
   @override
   Widget build(BuildContext context) {
-    return new SizedBox.fromSize(
-      size: preferredSize,
-      child: new LayoutBuilder(builder: (context, constraint) {
-        final width = constraint.maxWidth * 8;
-        return new ClipRect(
-          child: new OverflowBox(
-            maxHeight: double.infinity,
-            maxWidth: double.infinity,
-            child: new SizedBox(
-              width: width,
-              height: width,
-              child: new Padding(
-                padding: new EdgeInsets.only(
-                    bottom: width / 2 - preferredSize.height / 2),
-                child: new DecoratedBox(
-                  decoration: new BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    shape: BoxShape.circle,
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        SizedBox.fromSize(
+          size: preferredSize,
+          child: new LayoutBuilder(builder: (context, constraint) {
+            final width = constraint.maxWidth * 8;
+            return new ClipRect(
+              child: new OverflowBox(
+                maxHeight: double.infinity,
+                maxWidth: double.infinity,
+                child: new SizedBox(
+                  width: width,
+                  height: width,
+                  child: new Padding(
+                    padding: new EdgeInsets.only(
+                        bottom: width / 2 - preferredSize.height / 2),
+                    child: new Container(
+                      //   position: DecorationPosition.foreground,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+            );
+          }),
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: kToolbarHeight * 2),
+          child: AppBar(
+            title: Text(title),
           ),
-        );
-      }),
+        ),
+      ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 2);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 1.8);
 }
