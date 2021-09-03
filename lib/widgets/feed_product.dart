@@ -1,5 +1,5 @@
 import 'package:shopping/models/product.dart';
-import 'package:shopping/screens/feeds_product_details.dart';
+import 'package:shopping/screens/shopping/feeds_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:shopping/widgets/show_feed_dialog.dart';

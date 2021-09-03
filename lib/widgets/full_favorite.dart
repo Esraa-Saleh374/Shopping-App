@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping/widgets/category/show_dialog.dart';
 import 'package:shopping/models/favorite_atrribute.dart';
 import 'package:shopping/providers/favorite_provider.dart';
-import 'package:shopping/screens/feeds_product_details.dart';
+import 'package:shopping/screens/shopping/feeds_product_details.dart';
 import 'package:provider/provider.dart';
 
 class FullFevorit extends StatefulWidget {
